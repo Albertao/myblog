@@ -18,8 +18,7 @@ class CreateCommentTable extends Migration
             $table->integer('article_id');
             $table->string('author');
             $table->string('content');
-            $table->boolean('is_deleted');
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

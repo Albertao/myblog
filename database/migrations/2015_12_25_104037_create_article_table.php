@@ -18,8 +18,7 @@ class CreateArticleTable extends Migration
             $table->string('author');
             $table->string('title');
             $table->text('content');
-            $table->boolean('is_deleted');
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
