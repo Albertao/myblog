@@ -26,7 +26,6 @@ class ArticleController extends Controller
 
     public function detail($id){
         $article = Article::findOrFail($id);
-        $comment = Article::find($id)->comment->paginate(15);
-        return view('article.detail')->withArticles($article)->withComments($comment);
+        return view('article.detail')->withArticle($article)->withId($id);
     }
 }

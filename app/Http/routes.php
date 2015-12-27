@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::get('/art','ArticleController@index');
 
+Route::get('/art/detail/{id}','ArticleController@detail');
+
+Route::post('/search','ArticleController@search');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
