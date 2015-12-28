@@ -11,7 +11,7 @@ class Comment extends Model
 
     protected $table = "Comments";
 
-    protected $fillable = ['parent_id','author','content'];
+    protected $fillable = ['parent_id','author','content','article_id'];
 
     public function comment(){
         return $this->belongsTo('App\Models\Article','article_id');

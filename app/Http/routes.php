@@ -21,6 +21,8 @@ Route::get('/art/detail/{id}','ArticleController@detail');
 
 Route::post('/search','ArticleController@search');
 
+Route::get('/comment','CommentController@post');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

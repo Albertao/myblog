@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Redirect;
 
 class Handler extends ExceptionHandler
 {
@@ -46,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if($e instanceof ModelNotFoundException){
-            redirect('/');
+            abort(404);
         }
         return parent::render($request, $e);
     }
