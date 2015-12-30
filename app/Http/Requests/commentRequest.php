@@ -25,6 +25,10 @@ class commentRequest extends Request
     {
         return [
             //
+            'articleId' => 'required|integer',
+            'parentId'  => 'required|integer',
+            'author'    => 'required|max:255',
+            'comment'   => 'required|max:255'
         ];
     }
 }

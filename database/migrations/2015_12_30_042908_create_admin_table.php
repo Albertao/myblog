@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTable extends Migration
+class CreateAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('Categories', function (Blueprint $table) {
+        Schema::create('Admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->softDeletes();
+            $table->string('username',40);
+            $table->string('password',60);
+            $table->string('name',30);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category');
+        Schema::drop('Admins');
     }
 }
