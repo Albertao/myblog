@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+    public function __construct(){
+
+    }
+
     //
     public function post(Request $request){
         if(Auth::user()){
