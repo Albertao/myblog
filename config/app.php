@@ -158,6 +158,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         'Illuminate\Html\HtmlServiceProvider',
         App\Providers\validateProvider::class,
+        App\Providers\AdminAuthProvider::class,
     ],
 
     /*
@@ -204,9 +205,10 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form' => 'Illuminate\Html\FormFacade',
-        'HTML' => 'Illuminate\Html\HtmlFacade',
+        'Form'      => 'Illuminate\Html\FormFacade',
+        'HTML'      => 'Illuminate\Html\HtmlFacade',
         'validate'  => App\Facades\validateFacade::class,
+        'adminAuth' => App\Facades\adminAuthFacade::class,
     ],
 
 ];
