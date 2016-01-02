@@ -12,9 +12,17 @@ class ArticleController extends Controller
 {
     //
     public function index(){
-        $categories = Category::all();
-        $articles = Article::paginate(1);
-        return view('article.index')->withArticles($articles)->withCategories($categories);
+        if(empty(Input::get('category'))){
+            $categories = Category::all();
+            $articles = Article::paginate(15);
+            return view('article.index')->withArticles($articles)->withCategories($categories);
+        }
+        else{
+            $category = Input::get('category');
+            $articles = Category::where('name',$category)->article;
+            return view('article.index')->withArticles($articles)->withCategories($category);
+        }
+
     }
 
     public function search(){

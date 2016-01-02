@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Closure,adminAuth;
+use Closure,adminAuth,Request;
 
 class Admin
 {
@@ -15,10 +15,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $data = [
-            'username' => $request->input('uname'),
-            'password' => $request->input('passwd'),
-        ];
+        $data = Request::only('username','password')
         if(adminAuth::attempt($data)){
             return $next($request);
         }else{
