@@ -5,12 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-@foreach($articles as $article)
-    {{$article->slag}}<br>
-    {{$article->title}}<br>
-    {{$article->author}}<br>
-    {{$article->content}}
-@endforeach
-{{$articles->render()}}
+
+{{Auth::user()}}
 </body>
 </html>

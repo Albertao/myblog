@@ -17,11 +17,13 @@ Route::get('/', function () {
 
 Route::get('/art','ArticleController@index');
 
-Route::get('/art/detail/{id}','ArticleController@detail');
+
 
 Route::post('/search','ArticleController@search');
 
 Route::get('/comment','CommentController@post');
+
+Route::get('/url','CommentController@test');
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,15 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
+    Route::get('/', 'HomeController@index');
+    Route::get('/art/detail/{id}','ArticleController@detail');
+    Route::get('/urls','CommentController@test');
+    Route::post('/comment','CommentController@post');
     Route::get('/home', 'HomeController@index');
 });
+
+/*Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+});*/

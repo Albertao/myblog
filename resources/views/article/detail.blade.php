@@ -6,18 +6,21 @@
 </head>
 <body>
 {{$article->content}}<br>
+<form action="/comment" method="post">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
+    <input type="hidden" name="articleId" value="{{$id}}">
+    <input type="hidden" name="parent_id" value="0">
+    <input type="text" name="comment">
+    <input type="submit" value="提交">
+</form>
 
-{!! Form::open(['url' => '/comment', 'method' => 'post']) !!}
 
-{!! Form::label('comment','评论内容') !!}
+@if(null !== Session::get('error'))
+    {{Session::get('error')}}
+@else
+    sadasdas
+@endif
 
-{!! Form::text('comment',null,['class' => 'comment']) !!}
-
-{!! Form::hidden('articleId',$id) !!}
-{!! Form::hidden('parent_id',0) !!}
-
-{!! Form::submit('发表评论') !!}
-
-{!! Form::close() !!}
+{{dd(Session::all())}}
 </body>
 </html>

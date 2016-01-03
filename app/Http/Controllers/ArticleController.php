@@ -34,6 +34,7 @@ class ArticleController extends Controller
 
     public function detail($id){
         $article = Article::findOrFail($id);
+        $categories = Category::all();
         return view('article.detail')->withArticle($article)->withCategories($categories)->withId($id);
     }
 
