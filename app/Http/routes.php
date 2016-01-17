@@ -36,21 +36,45 @@ Route::get('/url','CommentController@test');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+//these routes don't need auth
+Route::get('/art/detail/{id}','ArticleController@detail');
+Route::get('/', 'HomeController@index');
 
+//the front routes,where the normal authed user can accessed
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/', 'HomeController@index');
-    Route::get('/art/detail/{id}','ArticleController@detail');
-    Route::get('/urls','CommentController@test');
     Route::post('/comment','CommentController@post');
-    Route::get('/home', 'HomeController@index');
 });
 
-/*Route::group(['middleware' => 'web'], function () {
+//the admin routes
+Route::group(['middleware' => ['web', 'Admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
+    //it needs auth
     Route::auth();
+    Route::get('/','AdminController@index');
 
-    Route::get('/home', 'HomeController@index');
-});*/
+    //Article admin routes
+    Route::group(['prefix' => 'Article', 'as' => 'article'], function(){
+        Route::get('/', 'ArticleAdminController@index');
+        Route::get('edit', 'ArticleAdminControlle@edit');
+        Route::post('post', 'ArticleAdminControlle@post');
+        Route::get('show/{id}', 'ArticleAdminControlle@show');
+        Route::post('update/{id}', 'ArticleAdminControlle@update');
+        Route::post('restore/{id}', 'ArticleAdminControlle@restore');
+        Route::post('delete/{id}', 'ArticleAdminControlle@delete');
+    });
+
+    //User admin routes
+    Route::group(['prefix' => 'User', 'as' => 'user'], function(){
+        Route::get('/', 'UserAdminController@index');
+        Route::post('delete/{id}', 'UserAdminController@delete');
+        Route::post('restore/{id}', 'UserAdminController@restore');
+    });
+
+    //Category admin routes
+    Route::group(['prefix' => 'Category', 'as' => 'category'], function(){
+        Route::get('/', 'CategoryAdminController@index');
+        Route::post('create', 'CategoryAdminController@create');
+        Route::post('delete/{id}', 'CategoryAdminController@delete');
+    });
+
+});
