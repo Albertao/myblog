@@ -9,9 +9,13 @@ class adminAuth{
         if(is_array($data)){
             $adminInstance = Admin::where($data)->first();
             if(!empty($adminInstance)){
-                Session::put('adminId',$adminInstance->id);
-                unset($adminInstance);
-                return true;
+                if(Session::put('adminId',1)){
+                    unset($adminInstance);
+                    return true;
+                }else{
+                    return false;
+                }
+
             }else{
                 return false;
             }

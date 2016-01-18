@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Closure,adminAuth,Request;
+use Closure,Auth,Request,adminAuth,Session;
 
 class Admin
 {
@@ -15,11 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $data = Request::only('username','password')
-        if(adminAuth::attempt($data)){
+        if(Session::get('adminId')){
             return $next($request);
         }else{
-            abort(404);
+            abort(503);
         }
     }
 }

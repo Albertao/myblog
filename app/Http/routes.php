@@ -38,19 +38,25 @@ Route::get('/url','CommentController@test');
 
 //these routes don't need auth
 Route::get('/art/detail/{id}','ArticleController@detail');
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 
 //the front routes,where the normal authed user can accessed
 Route::group(['middleware' => 'web'], function () {
+    Route::get('/', 'HomeController@index');
     Route::auth();
     Route::post('/comment','CommentController@post');
 });
 
 //the admin routes
-Route::group(['middleware' => ['web', 'Admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
-    //it needs auth
-    Route::auth();
-    Route::get('/','AdminController@index');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+    Route::get('/login','AdminController@loginView');
+    Route::post('/login','AdminController@login');
+});
+
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
+
+    Route::get('/index','AdminController@index');
+
 
     //Article admin routes
     Route::group(['prefix' => 'Article', 'as' => 'article'], function(){
