@@ -10,10 +10,6 @@ use Redirect;
 
 class UserAdminController extends Controller
 {
-    //
-    public function __construct(){
-        $this->middleware('Admin');
-    }
 
     public function index(){
         $users = User::withTrashed()->all()->paginate(15);

@@ -1,1 +1,2 @@
 asdasdas
+{{dd(Session::all())}}

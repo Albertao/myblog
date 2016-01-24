@@ -14,13 +14,11 @@
     <input type="submit" value="提交">
 </form>
 
-
-@if(null !== Session::get('error'))
-    {{Session::get('error')}}
+@if(Auth::user())
+{{Auth::user()->name}}
 @else
-    sadasdas
-@endif
-
+    游客，欢迎
+    @endif
 {{dd(Session::all())}}
 </body>
 </html>

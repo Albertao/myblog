@@ -9,12 +9,13 @@ class adminAuth{
         if(is_array($data)){
             $adminInstance = Admin::where($data)->first();
             if(!empty($adminInstance)){
-                if(Session::put('adminId',1)){
+                /*if(session('adminId',$adminInstance->id)){
                     unset($adminInstance);
                     return true;
                 }else{
                     return false;
-                }
+                }*/
+                return $adminInstance;
 
             }else{
                 return false;
@@ -25,7 +26,7 @@ class adminAuth{
     }
 
     public function admin(){
-        if(!empty(Session::get('adminId'))){
+        if(!empty(session('adminId'))){
             $adminInstance = Admin::find(Session::get('adminId'));
             return $adminInstance;
         }else{

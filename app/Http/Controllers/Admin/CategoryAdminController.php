@@ -13,7 +13,7 @@ class CategoryAdminController extends Controller
 {
     //
     public function index(){
-        $categories = Category::all()->paginate(15);
+        $categories = Category::paginate(15);
         return view('admin.category')->withCategories($categories);
     }
 

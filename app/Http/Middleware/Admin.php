@@ -15,10 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Session::get('adminId')){
+        if($request->session()->has('adminId')){
             return $next($request);
         }else{
-            abort(503);
+            return redirect()->route('admin::view');
         }
     }
 }
