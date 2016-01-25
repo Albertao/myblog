@@ -35,11 +35,13 @@ Route::get('/url','CommentController@test');
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::get('/about', ['as' => 'about', 'uses' => 'HomeController@about']);
+
 
 //the front routes,where the normal authed user can accessed
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/art/detail/{id}','ArticleController@detail');
+    Route::get('/art/detail/{id}',['as' => 'detail', 'uses' => 'ArticleController@detail']);
     Route::get('/', 'HomeController@index');
     Route::post('/comment','CommentController@post');
 });
@@ -55,12 +57,12 @@ Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'as'  => 'admin::', 
         //Article admin routes
         Route::group(['prefix' => 'Article', 'as' => 'article::'], function(){
             Route::get('/', ['as' => 'list', 'uses' => 'ArticleAdminController@index']);
-            Route::get('edit', ['as' => 'edit', 'uses' => 'ArticleAdminControlle@edit']);
-            Route::post('post', ['as' => 'post', 'uses' => 'ArticleAdminControlle@post']);
-            Route::get('show/{id}', ['as' => 'show', 'uses' => 'ArticleAdminControlle@show']);
-            Route::post('update/{id}', ['as' => 'update', 'uses' => 'ArticleAdminControlle@update']);
-            Route::post('restore/{id}', ['as' => 'restore', 'uses' => 'ArticleAdminControlle@restore']);
-            Route::post('delete/{id}', ['as' => 'delete', 'uses' => 'ArticleAdminControlle@delete']);
+            Route::get('edit', ['as' => 'edit', 'uses' => 'ArticleAdminController@edit']);
+            Route::post('post', ['as' => 'post', 'uses' => 'ArticleAdminController@post']);
+            Route::get('show/{id}', ['as' => 'show', 'uses' => 'ArticleAdminController@show']);
+            Route::post('update/{id}', ['as' => 'update', 'uses' => 'ArticleAdminController@update']);
+            Route::post('restore/{id}', ['as' => 'restore', 'uses' => 'ArticleAdminController@restore']);
+            Route::post('delete/{id}', ['as' => 'delete', 'uses' => 'ArticleAdminController@delete']);
         });
 
         //User admin routes

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $firstArticle = Article::first();
+        $others = Article::where('id','>',1)->get();
+        return view('home')->with(['first' => $firstArticle, 'others' => $others]);
+    }
+
+    public function about(){
+        return view('about');
     }
 }

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Redirect,Validator,validate,Auth;
 
 class ArticleAdminController extends Controller

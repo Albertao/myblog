@@ -18,6 +18,7 @@ class CreateArticleTable extends Migration
             $table->string('author');
             $table->string('title');
             $table->string('category');
+            $table->string('image_url');
             $table->text('content');
             $table->softDeletes();
             $table->timestamps();
