@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Route::get('/art','ArticleController@index');
 
-
-
 Route::post('/search','ArticleController@search');
 
 Route::get('/comment','CommentController@post');
@@ -42,6 +40,8 @@ Route::get('/about', ['as' => 'about', 'uses' => 'HomeController@about']);
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/art/detail/{id}',['as' => 'detail', 'uses' => 'ArticleController@detail']);
+    Route::get('edit', 'ProfileController@show');
+    Route::post('edit', 'ProfileController@edit');
     Route::get('/', 'HomeController@index');
     Route::post('/comment','CommentController@post');
 });

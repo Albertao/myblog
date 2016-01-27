@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Profile;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -67,6 +68,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'head_url' => '/asset/img/tapet_2016-01-08_16-21-49_517_2880x2560.png',
+            'introduction' => 'this guy is so lazy that he/she didn\'t leave anything',
         ]);
     }
 }

@@ -5,7 +5,7 @@
     <main class="mdl-layout__content">
         <div class="login-form mdl-grid">
 
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="login-card mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__media mdl-color-text--amber-50" style="background-image: url('{{URL::asset('asset/img/tapet_2016-01-09_12-25-18_053_2880x2560.png')}}')">
                     <h3>Login</h3>
                 </div>
@@ -32,6 +32,8 @@
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
+                    <a href="{{ url('/register') }}" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">Register please~!</a>
+                    <div class="mdl-layout-spacer"></div>
                     <a href="{{ url('/password/reset') }}" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">Forgot your password?</a>
                     <button type="submit" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" form="login">Go~</button>
                 </div>

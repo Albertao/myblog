@@ -15,28 +15,31 @@
                 </div>
             </div>
             <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
-                <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
-                    <i class="material-icons mdl-color-text--white" role="presentation">add</i>
-                    <span class="visuallyhidden">add</span>
+                @if(Auth::guest())
+                @else
+                <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" onclick="window.location.href='/login'" title="click to edit your profile">
+                    <i class="material-icons mdl-color-text--white" role="presentation">edit</i>
+                    <span class="visuallyhidden">edit</span>
                 </button>
                 <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
-                    <img src="images/logo.png">
-                    +1,337
+                    <img src="{{Auth::user()->head_url}}">
+                    {{Auth::user()->name}}
                 </div>
                 <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
                     <div>
-                        <strong>Welcome to AlbertHao's little blog~!</strong>
+                        <strong>Welcome back,{{Auth::user()->name}}~!</strong>
                     </div>
                     <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
                         <a style="text-decoration: none;" href="{{URL::route('about')}}"><li class="mdl-menu__item">About</li></a>
-                        <a style="text-decoration: none;" target="_blank" href="http://weibo.com/u/1864452734?is_all=1"><li class="mdl-menu__item">Sina Weibo</li></a>
-                        <a style="text-decoration: none;" target="_blank" href="https://github.com/Albertao"><li class="mdl-menu__item">Github</li></a>
+                        <a style="text-decoration: none;" href="{{URL::route('edit')}}"><li class="mdl-menu__item">Edit profile</li></a>
+                        <a style="text-decoration: none;" href="{{url('/logout')}}"><li class="mdl-menu__item">Logout</li></a>
                     </ul>
                     <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                         <i class="material-icons" role="presentation">more_vert</i>
                         <span class="visuallyhidden">show menu</span>
                     </button>
                 </div>
+                @endif
             </div>
             @foreach($others as $other)
                 @if($other->image_url === null)
