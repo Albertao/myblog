@@ -36,10 +36,6 @@
                             <input type="password" style="color: #3f51b5;" class="mdl-textfield__input" id="confirm" name="password_confirmation">
                             <label for="confirm" class="mdl-textfield__label">Confirm your password</label>
                         </div>
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="reMe">
-                            <input type="checkbox" name="remember" id="reMe" class="mdl-checkbox__input" checked>
-                            <span class="mdl-checkbox__label mdl-color-text--blue-900">Remember me?</span>
-                        </label>
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">

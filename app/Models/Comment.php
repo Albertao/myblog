@@ -13,7 +13,11 @@ class Comment extends Model
 
     protected $fillable = ['parent_id','author','content','article_id'];
 
-    public function comment(){
-        return $this->belongsTo('App\Models\Article','article_id');
+    public function remarks(){
+        return $this->hasMany('App\Models\Comment','parent_id', 'id');
+    }
+
+    public function user(){
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 }

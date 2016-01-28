@@ -18,16 +18,20 @@
                     <form action="{{ url('/login') }}" method="post" id="login">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-textfields mdl-color-text--grey-300">
-                            <input type="email" style="color: #3f51b5;" class="mdl-textfield__input{{ $errors->has('email') ? ' in_invalid' : '' }}" id="account" name="email" value="{{old ('email') }}">
-                            <label for="account" class="mdl-textfield__label{{ $errors->has('email') ? ' in_invalid' : '' }}">Email-Address</label>
+                            <input type="email" style="color: #3f51b5;" class="mdl-textfield__input{{ $errors->has('email') ? ' is_invalid' : '' }}" id="account" name="email" value="{{old ('email') }}">
+                            <label for="account" class="mdl-textfield__label{{ $errors->has('email') ? ' is_invalid' : '' }}">Email-Address</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-textfields">
                             <input type="password" style="color: #3f51b5;" class="mdl-textfield__input" id="passwd" name="password">
                             <label for="passwd" class="mdl-textfield__label">Password</label>
                         </div>
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="reMe">
+                        <!--<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="reMe">
                             <input type="checkbox" name="remember" id="reMe" class="mdl-checkbox__input" checked>
                             <span class="mdl-checkbox__label mdl-color-text--blue-900">Remember me?</span>
+                        </label>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="reMe">
+                            <input type="checkbox" id="reMe" name="remember" class="mdl-switch__input" checked>
+                            <span class="mdl-switch__label mdl-color-text--indigo">Remember me?</span>
                         </label>
                     </form>
                 </div>

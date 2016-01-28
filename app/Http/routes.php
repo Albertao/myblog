@@ -40,10 +40,11 @@ Route::get('/about', ['as' => 'about', 'uses' => 'HomeController@about']);
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/art/detail/{id}',['as' => 'detail', 'uses' => 'ArticleController@detail']);
-    Route::get('edit', 'ProfileController@show');
-    Route::post('edit', 'ProfileController@edit');
+    Route::get('edit', ['as' => 'edit', 'uses' => 'ProfileController@show' ]);
+    Route::post('edit', ['as' => 'edit', 'uses' => 'ProfileController@edit' ]);
     Route::get('/', 'HomeController@index');
-    Route::post('/comment','CommentController@post');
+    Route::post('/comment', ['as' => 'comment', 'uses' => 'CommentController@post']);
+    Route::post('/likeOrDislike', ['as' => 'lod', 'uses' => 'CommentController@lod']);
 });
 
 //the admin routes

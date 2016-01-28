@@ -16,12 +16,32 @@
             </div>
             <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
                 @if(Auth::guest())
+                <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--grey" onclick="window.location.href='{{url('/login')}}'" title="click to login">
+                    <i class="material-icons mdl-color-text--white" role="presentation">done</i>
+                    <span class="visuallyhidden">sign in</span>
+                </button>
+                <div style="background-image: url('{{URL::asset('asset/img/tapet_2016-01-05_15-13-15_538_2880x2560.png2')}}');" class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+                </div>
+                <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+                    <div>
+                        <strong>Welcome to my blog~!</strong>
+                    </div>
+                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
+                        <a style="text-decoration: none;" href="{{URL::route('about')}}"><li class="mdl-menu__item">About</li></a>
+                        <a style="text-decoration: none;" target="_blank" href="http://weibo.com/u/1864452734"><li class="mdl-menu__item">Sina Weibo</li></a>
+                        <a style="text-decoration: none;" target="_blank" href="https://github.com/Albertao"><li class="mdl-menu__item">Github</li></a>
+                    </ul>
+                    <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">more_vert</i>
+                        <span class="visuallyhidden">show menu</span>
+                    </button>
+                </div>
                 @else
-                <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" onclick="window.location.href='/login'" title="click to edit your profile">
+                <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--grey" onclick="window.location.href='{{URL::route('edit')}}'" title="click to edit your profile">
                     <i class="material-icons mdl-color-text--white" role="presentation">edit</i>
                     <span class="visuallyhidden">edit</span>
                 </button>
-                <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+                <div class="mdl-card__media mdl-color--blue-grey mdl-color-text--grey-600">
                     <img src="{{Auth::user()->head_url}}">
                     {{Auth::user()->name}}
                 </div>

@@ -23,7 +23,7 @@ body::before {
        (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx)  {
   body::before {
-    background-image: url('../img/tapet_2016-01-07_14-58-19_914_2880x2560.png');
+    background-image: url('../img/tapet_2016-01-05_15-13-15_538_2880x2560.png');
   }
 }
 @media (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -234,14 +234,14 @@ body .demo-blog {
           transform: translate(0px, -28px);
 }
 .demo-blog .something-else .mdl-card__media {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
 .demo-blog .something-else .mdl-card__media img {
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 10px;
 }
 .demo-blog .something-else .mdl-card__supporting-text {

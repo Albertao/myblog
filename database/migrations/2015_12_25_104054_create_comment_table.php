@@ -16,8 +16,11 @@ class CreateCommentTable extends Migration
             $table->increments('id');
             $table->integer('parent_id');
             $table->integer('article_id');
+            $table->integer('user_id');
             $table->string('author');
             $table->string('content');
+            $table->integer('upvote');
+            $table->integer('down');
             $table->softDeletes();
             $table->timestamps();
         });
