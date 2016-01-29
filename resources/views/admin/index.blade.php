@@ -1,2 +1,1 @@
-asdasdas
-{{dd(Session::all())}}
+{{dd($admin)}}

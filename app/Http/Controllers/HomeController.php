@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $firstArticle = Article::first();
-        $others = Article::where('id','>',1)->get();
+        $others = Article::where('id','>',1)->limit(5)->get();
         return view('home')->with(['first' => $firstArticle, 'others' => $others]);
     }
 

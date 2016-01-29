@@ -34,6 +34,11 @@ class ArticleController extends Controller
 
     public function detail($id){
         $article = Article::findOrFail($id);
+        if(!Article::find($id+1)){
+            $article->max = true;
+        }else{
+            $article->max = false;
+        }
         $categories = Category::all();
         return view('article.detail')->withArticle($article)->withCategories($categories)->withId($id);
     }

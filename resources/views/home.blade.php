@@ -4,7 +4,7 @@
         <div class="demo-blog__posts mdl-grid">
             <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
                 <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{URL::asset('/asset/img/articles/'.$first->image_url)}}');">
-                    <h3><a href="entry.html">{{$first->title}}</a></h3>
+                    <h3><a href="{{URL::route('detail',$first->id)}}">{{$first->title}}</a></h3>
                 </div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                     <div class="minilogo"></div>
@@ -77,7 +77,7 @@
                 </div>
                 @else
                 <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-                    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{URL::asset('/asset/img/tapet_2016-01-09_12-25-18_053_2880x2560.png')}}');">
+                    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{$other->image_url}}');">
                         <h3><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
                     </div>
                     <div class="mdl-color-text--grey-600 mdl-card__supporting-text">

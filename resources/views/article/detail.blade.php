@@ -4,23 +4,30 @@
 @endsection
 @section('content')
 
-@endsection
-
-
-
-
 <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
     <main class="mdl-layout__content">
         <div class="demo-back">
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="{{ URL::previous() }}" title="go back" role="button">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+            @if(URL::previous() !== env('CURRENT_HOST').Request::getRequestUri())
+                href="{{URL::previous()}}" title="go back"
+            @else
+                href="{{url('/')}}" title="back to the home page"
+            @endif
+                role="button">
                 <i class="material-icons" role="presentation">arrow_back</i>
             </a>
         </div>
         <div class="demo-blog__posts mdl-grid">
             <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__media mdl-color-text--grey-50">
+                @if($article->image_url === null)
+                <div class="mdl-card__media mdl-color-text--grey-50" style="background-color: #00acc1;">
+                    <h3 class="quote">{{$article->title}}</h3>
+                </div>
+                @else
+                <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/{{ $article->image_url }}');">
                     <h3>{{$article->title}}</h3>
                 </div>
+                @endif
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
                     <div class="minilogo"></div>
                     <div>
@@ -29,7 +36,12 @@
                     </div>
                     <div class="section-spacer"></div>
                     <div class="meta__favorites">
-                        425 <i class="material-icons" role="presentation">favorite</i>
+                    @foreach($article->categories as $category)
+                    {{$category->name}}&nbsp;
+                    @endforeach
+                    </div>
+                    <!--<div class="meta__favorites">
+                        <i class="material-icons" role="presentation">favorite</i>
                         <span class="visuallyhidden">favorites</span>
                     </div>
                     <div>
@@ -39,7 +51,7 @@
                     <div>
                         <i class="material-icons" role="presentation">share</i>
                         <span class="visuallyhidden">share</span>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
                     {{$article->content}}
@@ -55,7 +67,7 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="articleId" value="{{$id}}">
                         <input type="hidden" name="parent_id" id="comment_parent" value="0">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="commentLabel">
                             <textarea rows=1 class="mdl-textfield__input" id="comment" name="comment"></textarea>
                             <label for="comment" class="mdl-textfield__label">Join the discussion</label>
                         </div>
@@ -63,7 +75,7 @@
                             <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
                         </button>
                     </form>
-                    @foreach($article->comment as $comment)
+                    @foreach($article->comment->sortByDesc('created_at') as $comment)
                     @if($comment->parent_id == 0)
                     <div class="comment mdl-color-text--grey-700">
                         <header class="comment__header">
@@ -87,7 +99,7 @@
                                 <i class="material-icons" role="presentation">comment</i><span class="visuallyhidden">re comment</span>
                             </button>
                         </nav>
-                        @foreach($comment->remarks as $remark)
+                        @foreach($comment->remarks->sortByDesc('created_at') as $remark)
                             <div class="comment__answers">
                                 <div class="comment">
                                     <header class="comment__header">
@@ -167,19 +179,23 @@
             </div>
 
             <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-                <a href="index.html" class="demo-nav__button">
+                @if($id != 1)
+                <a href="{{URL::route('detail', $id-1)}}" class="demo-nav__button">
                     <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                         <i class="material-icons">arrow_back</i>
                     </button>
                     Newer
                 </a>
+                @endif
                 <div class="section-spacer"></div>
-                <a href="index.html" class="demo-nav__button">
+                @if($article->max !== true)
+                <a href="{{URL::route('detail', $id+1)}}" class="demo-nav__button">
                     Older
                     <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                         <i class="material-icons">arrow_forward</i>
                     </button>
                 </a>
+                @endif
             </nav>
         </div>
         <footer class="mdl-mini-footer">
@@ -212,8 +228,10 @@
        $('.commentButton').click(function(){
            $('#comment_parent').val($(this).data('id'));
            $('#comment').val('R.E. @'+$(this).data('author')+': ');
+           $('#commentLabel').addClass('is-focused');
        });
     });
 </script>
 </body>
 </html>
+@endsection

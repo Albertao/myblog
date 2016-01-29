@@ -17,7 +17,7 @@ class Article extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
-    public function category(){
-        return $this->hasOne('App\Models\Category');
+    public function categories(){
+        return $this->belongsToMany('App\Models\Category', 'article_categories', 'article_id', 'category_id');
     }
 }
