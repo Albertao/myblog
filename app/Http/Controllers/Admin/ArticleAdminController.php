@@ -19,7 +19,7 @@ class ArticleAdminController extends Controller
     }
     //
     public function index(){
-        $articles = Article::withTrashed()->all()->paginate(15);
+        $articles = Article::withTrashed()->paginate(10);
         return view('admin.article')->withArticles($articles);
     }
 
@@ -63,8 +63,8 @@ class ArticleAdminController extends Controller
 
     public function restore($id){
         $id = intval($id);
-        $articleInstance = Article::find($id);
-        if($articleInstance->trashed()){
+        $articleInstance = Article::onlyTrashed()->find($id);
+        if($articleInstance){
             $articleInstance->restore();
             return Redirect::back()->withResult('operation complete');
         }else{
