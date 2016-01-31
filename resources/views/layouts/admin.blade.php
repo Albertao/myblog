@@ -48,6 +48,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{URL::asset('asset/css/material.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('asset/css/admin_style.css')}}">
+    <script src="{{URL::asset('asset/ckeditor/ckeditor.js')}}"></script>
     <style>
         #view-source {
             position: fixed;

@@ -34,6 +34,10 @@
                 </tr>
                 @endforeach
                 </tbody>
+                <textarea name="content" id="" cols="30" rows="10"></textarea>
+                <script>
+                    CKEDITOR.replace('content');
+                </script>
             </table>
         </div>
     </div>
