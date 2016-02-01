@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use validate,Redirect;
+use validate,Redirect,Request;
 use App\Models\Category;
 
 class CategoryAdminController extends Controller
@@ -19,10 +17,11 @@ class CategoryAdminController extends Controller
 
     public function create(){
         $data = Request::only('name');
-        $rules = ['name' => 'requried|max:255'];
-        if(validate::make($data,$rules)){
-            $model = new Category();
-            $model->save($data);
+        //$rules = ['name' => 'requried|max:255'];
+        //need validate
+        if(true){
+            $model = new Category($data);
+            $model->save();
             return Redirect::back()->withResult('create succeed');
         }else{
             return Redirect::back()->withResult('create failed');

@@ -49,7 +49,7 @@ Route::group(['middleware' => 'web'], function () {
 
 //the admin routes
 
-Route::group(['middleware' => ['web'], 'prefix' => 'adminWorld', 'as'  => 'admin::', 'namespace' => 'Admin'], function(){
+Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'as'  => 'admin::', 'namespace' => 'Admin'], function(){
 
     //these routes in admin needs authorization
     Route::group(['middleware' => ['admin'] ], function(){
@@ -75,12 +75,18 @@ Route::group(['middleware' => ['web'], 'prefix' => 'adminWorld', 'as'  => 'admin
 
         //Category admin routes
         Route::group(['prefix' => 'Category', 'as' => 'category::'], function(){
-            Route::get('/', ['as' => 'create', 'uses' => 'CategoryAdminController@index']);
+            Route::get('/', ['as' => 'list', 'uses' => 'CategoryAdminController@index']);
             Route::post('create', ['as' => 'create', 'uses' => 'CategoryAdminController@create']);
             Route::post('delete/{id}', ['as' => 'delete', 'uses' => 'CategoryAdminController@delete']);
         });
 
         //Comment admin routes
+        Route::group(['prefix' => 'Comment', 'as' => 'comment::'], function(){
+            Route::get('/', ['as' => 'list', 'uses' => 'CommentAdminController@index']);
+            Route::post('delete/{id}', ['as' => 'delete', 'uses' => 'CommentAdminController@delete']);
+            Route::post('restore/{id}', ['as' => 'restore', 'uses' => 'CommentAdminController@restore']);
+            Route::post('search', ['as' => 'search', 'uses' => 'CommentAdminController@search']);
+        });
     });
 
     Route::get('/login', ['as' => 'view', 'uses' => 'AdminController@loginView']);

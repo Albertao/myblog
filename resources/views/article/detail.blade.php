@@ -31,7 +31,7 @@
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
                     <div class="minilogo"></div>
                     <div>
-                        <strong>{{$article->title}}</strong>
+                        <strong>{{$article->author}}</strong>
                         <span>{{$article->updated_at->diffForHumans()}}</span>
                     </div>
                     <div class="section-spacer"></div>
@@ -54,7 +54,7 @@
                     </div>-->
                 </div>
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-                    {{$article->content}}
+                    <?php echo html_entity_decode($article->content); ?>
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
                     @if(Session::has('error'))

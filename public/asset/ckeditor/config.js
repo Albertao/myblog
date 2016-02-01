@@ -28,5 +28,11 @@ CKEDITOR.editorConfig = function( config ) {
     config.removeButtons = 'Save,NewPage,Preview,Print,Templates,PasteFromWord,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CreateDiv,BidiLtr,BidiRtl,Language,PageBreak,ShowBlocks,About,Maximize';
 
     //config.extraPlugins = 'uploadimage';
-    config.extraPlugins = 'imageuploader';
+    //config.imageUploadUrl = '/myblog/public/upload';
+    //config.extraPlugins = 'imageuploader';
+
+
+    config.filebrowserBrowseUrl ='/asset/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl ='/asset/ckfinder/ckfinder.html?Type=Images';
+    config.filebrowserImageUploadUrl ='/asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
 };

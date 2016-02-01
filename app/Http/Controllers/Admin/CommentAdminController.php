@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use Request;
 
 class CommentAdminController extends Controller
 {
     //
     public function index(){
-        $comments = Comment::withTrashed()->paginate(15);
+        $comments = Comment::withTrashed()->paginate(10);
         return view('admin.comment')->withComments($comments);
     }
 
-    public function search($keyword){
-        $results = Comment::where('content', 'like', '%'.$keyword.'%');->orWhere('article_id',$keyword)->all();
-        return view('admin.comment')->withComment($results);
+    public function search(){
+        $keyword = Request::only('keyword')['keyword'];
+        $results = Comment::where('content', 'like', '%'.$keyword.'%')->orWhere('author', 'like', '%'.$keyword.'%')->paginate(10);
+        return redirect()->back()->withComments($results);
     }
 
     public function delete($id){
@@ -36,7 +36,7 @@ class CommentAdminController extends Controller
     public function restore($id){
         if($target = Comment::onlyTrashed()->find($id)){
             if($target->restore()){
-                return redirect()->back()->with('success','delete success');
+                return redirect()->back()->with('success','restore success');
             }else{
                 return redirect()->back()->with('error','something wrong happende, please try again or contact your system manager.');
             }

@@ -106,8 +106,8 @@
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a class="mdl-navigation__link" href="{{ URL::route('admin::list') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
             <a class="mdl-navigation__link" href="{{ URL::route('admin::article::list') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">receipt</i>Article</a>
-            <a class="mdl-navigation__link" href="{{ URL::route('admin::category::create') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dehaze</i>Category</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">comment</i>Comment</a>
+            <a class="mdl-navigation__link" href="{{ URL::route('admin::category::list') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dehaze</i>Category</a>
+            <a class="mdl-navigation__link" href="{{ URL::route('admin::comment::list') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">comment</i>Comment</a>
             <a class="mdl-navigation__link" href="{{ URL::route('admin::user::list') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i>User</a>
             <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
