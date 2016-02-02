@@ -65,7 +65,7 @@
                 @if($other->image_url === null)
                 <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
                     <div class="mdl-card__title mdl-color-text--grey-50">
-                        <h3 class="quote"><a href="{{URL::route('detail', $other->id)}}">{{$other->slag}}</a></h3>
+                        <h3 class="quote"><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
                     </div>
                     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                         <div class="minilogo"></div>

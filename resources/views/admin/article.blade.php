@@ -5,6 +5,11 @@
 @section('content')
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="demo-content mdl-grid">
+        <div class="mdl-cell--12-col">
+            @if(Session::has('result'))
+                <h3 class="mdl-color-text--amber">{{Session::get('result')}}</h3>
+            @endif
+        </div>
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp demo-charts mdl-cell--12-col ">
             <thead>
             <tr>

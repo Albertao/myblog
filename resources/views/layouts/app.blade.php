@@ -48,6 +48,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{URL::asset('asset/css/material.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('asset/css/styles.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('asset/styles/atelier-forest-dark.css')}}">
+    <script src="{{URL::asset('asset/js/highlight.pack.js')}}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <style>
         #view-source {
             position: fixed;

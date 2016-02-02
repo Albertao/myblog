@@ -76,6 +76,7 @@
                         </button>
                     </form>
                     @foreach($article->comment->sortByDesc('created_at') as $comment)
+                    @if(!$comment->user->trashed())
                     @if($comment->parent_id == 0)
                     <div class="comment mdl-color-text--grey-700">
                         <header class="comment__header">
@@ -124,6 +125,7 @@
                             </div>
                         @endforeach
                     </div>
+                    @endif
                     @endif
                     @endforeach
 
