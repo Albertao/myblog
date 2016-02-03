@@ -32,6 +32,9 @@ class UserAdminController extends Controller
     public function restore($id){
         $id = intval($id);
         $userInstance = User::onlyTrashed()->findOrFail($id);
+        $userInstance->comments->each(function($comment){
+            Comment::withTrashed()->find($comment->id)->restore();
+        });
         if($userInstance->restore()){
             return redirect()->back()->with('success', 'restore success');
         }else{

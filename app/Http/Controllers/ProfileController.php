@@ -6,7 +6,7 @@ use App\Services\validate;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect,Request,Input,Auth;
+use Redirect,Request,Input,Auth,upload;
 
 class ProfileController extends Controller
 {
@@ -16,7 +16,6 @@ class ProfileController extends Controller
         $this->validate = $validate;
     }
 
-    //
     public function show(){
         if(Auth::check()){
             return view('profile');
@@ -29,17 +28,7 @@ class ProfileController extends Controller
         if(Auth::check()){
             $model = User::find(Auth::user()->id);
             if(Request::hasFile('portrait')){
-                $file = Input::file('portrait');
-                $allowed_extensions = ["png", "jpg", "gif"];
-                if( $file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions) ){
-                    return redirect()->back()->with('error', '图片必须是jpg，png或者是gif格式');
-                }
-                $destination = 'asset/portraits/';
-                $extension = $file->getClientOriginalExtension();
-                $fileName = str_random(15).'.'.$extension;
-                $file->move($destination, $fileName);
-                $data = Request::only('introduction', 'sex', 'name');
-                $data['head_url'] = $destination.$fileName;
+                $data['head_url'] = upload::upload('asset/portraits/', 'portrait');
             }else{
                 $data = Request::only('introduction', 'sex', 'name');
             }

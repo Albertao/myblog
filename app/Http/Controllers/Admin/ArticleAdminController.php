@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect,Validator,validate,Auth,Request,adminAuth,Input;
+use Redirect,validate,Auth,Request,adminAuth,Input,upload;
 
 class ArticleAdminController extends Controller
 {
@@ -31,24 +31,13 @@ class ArticleAdminController extends Controller
         $data = Request::only('slag','title');
         $data['content'] = htmlentities($_POST['content']);
         $data['author'] = adminAuth::admin()->name;
-        //$rules = ['slag' => 'required|max:255','author' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
         if(Request::hasFile('article_image')){
-            $file = Input::file('article_image');
-            $allowed_extensions = ["png", "jpg", "gif"];
-            if( $file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions) ){
-                return redirect()->back()->with('result', '图片必须是jpg，png或者是gif格式');
-            }
-            $destination = 'asset/article_image/';
-            $extension = $file->getClientOriginalExtension();
-            $fileName = str_random(15).'.'.$extension;
-            $file->move($destination, $fileName);
-            $data['image_url'] = $destination.$fileName;
+            $data['image_url'] = upload::upload('asset/article_image', 'article_image');
         }
-        //need validate
-        if(true){
+        $rules = ['slag' => 'required|max:255','author' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
+        if(validate::make($data, $rules)){
             $article = new Article($data);
             $article->save();
-            //dd($categories);
             $categories = Request::only('category');
             $article->categories()->sync($categories['category']);
             return Redirect::back()->withResult('operation complete');
@@ -69,20 +58,10 @@ class ArticleAdminController extends Controller
         $articleInstance = Article::findOrFail($id);
         $data = Request::only('slag','content','title');
         if(Request::hasFile('article_image')){
-            $file = Input::file('article_image');
-            $allowed_extensions = ["png", "jpg", "gif"];
-            if( $file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions) ){
-                return redirect()->back()->with('result', '图片必须是jpg，png或者是gif格式');
-            }
-            $destination = 'asset/article_image/';
-            $extension = $file->getClientOriginalExtension();
-            $fileName = str_random(15).'.'.$extension;
-            $file->move($destination, $fileName);
-            $data['image_url'] = $destination.$fileName;
+            $data['image_url'] = upload::upload('asset/article_image/', 'article_image');
         }
-        //$rules = ['slag' => 'required|max:255','title' => 'required|max:255','content' => 'required','category' => 'required|max:255'];
-        //need validate
-        if(true){
+        $rules = ['slag' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
+        if(validate::make($data, $rules)){
             $categories = Request::only('category');
             $articleInstance->update($data);
             $articleInstance->categories()->sync($categories['category']);

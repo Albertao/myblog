@@ -158,6 +158,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\validateProvider::class,
         App\Providers\AdminAuthProvider::class,
+        App\Providers\UploadImageProvider::class,
     ],
 
     /*
@@ -206,6 +207,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'validate'  => App\Facades\validateFacade::class,
         'adminAuth' => App\Facades\adminAuthFacade::class,
+        'upload'    => App\Facades\uploadImageFacade::class,
     ],
 
 ];

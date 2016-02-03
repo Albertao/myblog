@@ -38,7 +38,7 @@ class AdminController extends Controller
             //    abort(503);
             //}
         }else{
-            abort(404);
+            return redirect()->back()->with('error', 'login failed');
         }
         //dd(crypt('hsb4325',env('APP_KEY')));
 
