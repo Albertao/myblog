@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -25,9 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $firstArticle = Article::first();
-        $others = Article::where('id','>',$firstArticle->id)->limit(5)->get();
-        return view('home')->with(['first' => $firstArticle, 'others' => $others]);
+        $article = Article::paginate(3);
+        $maxPage = intval(ceil(Article::count()/3));
+        $firstArticle = $article->shift();
+        $others = $article;
+        return view('home')->with(['first' => $firstArticle, 'others' => $others, 'maxPage' => $maxPage]);
+        /*$categories = Category::all();
+        $articles = Article::paginate(15);
+        return view('home')->withArticles($articles)->withCategories($categories);*/
     }
 
     public function about(){
