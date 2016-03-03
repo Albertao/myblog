@@ -37,7 +37,9 @@
                     <div class="section-spacer"></div>
                     <div class="meta__favorites">
                     @foreach($article->categories as $category)
-                    {{$category->name}}&nbsp;
+                            <a href="{{URL::route('category', $category->id)}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                {{$category->name}}
+                            </a>&nbsp;
                     @endforeach
                     </div>
                     <!--<div class="meta__favorites">

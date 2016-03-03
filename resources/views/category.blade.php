@@ -63,61 +63,61 @@
             </div>
             @foreach($others as $other)
                 @if($other->image_url === null)
-                <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
-                    <div class="mdl-card__title mdl-color-text--grey-50">
-                        <h3 class="quote"><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
-                    </div>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <div class="minilogo"></div>
-                        <div>
-                            <strong>{{$other->author}}</strong>
-                            <span>{{$other->updated_at->diffForHumans()}}</span>
+                    <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__title mdl-color-text--grey-50">
+                            <h3 class="quote"><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
+                        </div>
+                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                            <div class="minilogo"></div>
+                            <div>
+                                <strong>{{$other->author}}</strong>
+                                <span>{{$other->updated_at->diffForHumans()}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @else
-                <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-                    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{$other->image_url}}');">
-                        <h3><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
-                    </div>
-                    <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-                        {{$other->slag}}
-                    </div>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <div class="minilogo"></div>
-                        <div>
-                            <strong>{{$other->author}}</strong>
-                            <span>{{$other->updated_at->diffForHumans()}}</span>
+                    <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{$other->image_url}}');">
+                            <h3><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
+                        </div>
+                        <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+                            {{$other->slag}}
+                        </div>
+                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                            <div class="minilogo"></div>
+                            <div>
+                                <strong>{{$other->author}}</strong>
+                                <span>{{$other->updated_at->diffForHumans()}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             @endforeach`
             <nav class="demo-nav mdl-cell mdl-cell--12-col">
                 @if(!Request::has('page') || Request::get('page') == 1)
                     <div class="section-spacer"></div>
-                    <a href="/?page=2" class="demo-nav__button" title="show more">
+                    <a href="{{URL::route('category', Request::route('categoryId'))}}?page=2" class="demo-nav__button" title="show more">
                         Next
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_forward</i>
                         </button>
                     </a>
                 @elseif(Request::get('page') == $maxPage)
-                    <a href="/?page={{ $maxPage-1 }}" class="demo-nav__button" title="show more">
+                    <a href="{{URL::route('category', Request::route('categoryId'))}}?page={{ $maxPage-1 }}" class="demo-nav__button" title="show more">
                         Prev
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_back</i>
                         </button>
                     </a><div class="section-spacer"></div>
                 @else
-                    <a href="/?page={{Request::get('page')-1}}" class="demo-nav__button" title="show more">
+                    <a href="{{URL::route('category', Request::route('categoryId'))}}?page={{Request::get('page')-1}}" class="demo-nav__button" title="show more">
                         Prev
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_back</i>
                         </button>
                     </a>
                     <div class="section-spacer"></div>
-                    <a href="/?page={{Request::get('page')+1}}" class="demo-nav__button" title="show more">
+                    <a href="{{URL::route('category', Request::route('categoryId'))}}?page={{Request::get('page')+1}}" class="demo-nav__button" title="show more">
                         Next
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_forward</i>

@@ -26,8 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $article = Article::paginate(3);
-        $maxPage = intval(ceil(Article::count()/3));
+        $perPage = 2;
+        $article = Article::paginate($perPage);
+        $maxPage = intval(ceil(Article::count()/$perPage));
         $firstArticle = $article->shift();
         $others = $article;
         return view('home')->with(['first' => $firstArticle, 'others' => $others, 'maxPage' => $maxPage]);

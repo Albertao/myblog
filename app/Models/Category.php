@@ -15,6 +15,6 @@ class Category extends Model
     protected $fillable = ['name'];
 
     public function article(){
-        return $this->hasMany('App\Models\Article');
+        return $this->belongsToMany('App\Models\Article', 'article_categories', 'category_id', 'article_id');
     }
 }
