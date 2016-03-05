@@ -50,7 +50,7 @@
                 @endif
             </div>
             <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
-                <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{URL::asset('/asset/img/articles/'.$first->image_url)}}');">
+                <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{URL::asset($first->image_url)}}');">
                     <h3><a href="{{URL::route('detail',$first->id)}}">{{$first->title}}</a></h3>
                 </div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">

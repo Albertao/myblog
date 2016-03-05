@@ -32,7 +32,7 @@ class ArticleAdminController extends Controller
         $data['content'] = htmlentities($_POST['content']);
         $data['author'] = adminAuth::admin()->name;
         if(Request::hasFile('article_image')){
-            $data['image_url'] = upload::upload('asset/article_image', 'article_image');
+            $data['image_url'] = upload::upload('asset/article_image/', 'article_image');
         }
         $rules = ['slag' => 'required|max:255','author' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
         if(validate::make($data, $rules)){
