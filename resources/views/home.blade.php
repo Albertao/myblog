@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('content')
 <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
     <main class="mdl-layout__content">
         <div class="demo-blog__posts mdl-grid">
@@ -150,7 +151,6 @@
 </div>
 <a href="https://github.com/Albertao/myblog" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
 <script src="{{URL::asset('asset/js/material.min.js')}}"></script>
-</body>
 <script>
     Array.prototype.forEach.call(document.querySelectorAll('.mdl-card__media'), function(el) {
         var link = el.querySelector('a');
@@ -166,4 +166,3 @@
         });
     });
 </script>
-</html>

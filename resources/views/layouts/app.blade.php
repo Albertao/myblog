@@ -37,6 +37,9 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
+    <!-- nav color for mobile chrome-->
+    <meta name="theme-color" content="#66ccff">
+
     <link rel="shortcut icon" href="images/favicon.png">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
@@ -65,3 +68,5 @@
 </head>
 <body>
 @yield('content')
+</body>
+</html>
