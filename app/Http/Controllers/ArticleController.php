@@ -32,9 +32,9 @@ class ArticleController extends Controller
 
     }
 
-    public function detail($id){
-        $article = Article::findOrFail($id);
-        if(!Article::find($id+1)){
+    public function detail($slag){
+        $article = Article::where('slag', $slag)->findOrFail();
+        if(!Article::find($article->id+1)){
             $article->max = true;
         }else{
             $article->max = false;

@@ -39,7 +39,7 @@ Route::get('/about', ['as' => 'about', 'uses' => 'HomeController@about']);
 //the front routes,where the normal authed user can accessed
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/art/detail/{id}',['as' => 'detail', 'uses' => 'ArticleController@detail']);
+    Route::get('/art/detail/{slag}',['as' => 'detail', 'uses' => 'ArticleController@detail']);
     Route::get('edit', ['as' => 'edit', 'uses' => 'ProfileController@show' ]);
     Route::post('edit', ['as' => 'edit', 'uses' => 'ProfileController@edit' ]);
     Route::get('/', 'HomeController@index');

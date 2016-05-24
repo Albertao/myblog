@@ -52,7 +52,7 @@
             </div>
             <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
                 <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{URL::asset($first->image_url)}}');">
-                    <h3><a href="{{URL::route('detail',$first->id)}}">{{$first->title}}</a></h3>
+                    <h3><a href="{{URL::route('detail',$first->slag)}}">{{$first->title}}</a></h3>
                 </div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                     <div class="minilogo"></div>
@@ -66,7 +66,7 @@
                 @if($other->image_url === null)
                 <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
                     <div class="mdl-card__title mdl-color-text--grey-50">
-                        <h3 class="quote"><a href="{{URL::route('detail', $other->id)}}">{{$other->title}}</a></h3>
+                        <h3 class="quote"><a href="{{URL::route('detail', $other->slag)}}">{{$other->title}}</a></h3>
                     </div>
                     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                         <div class="minilogo"></div>
