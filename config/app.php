@@ -208,6 +208,7 @@ return [
         'validate'  => App\Facades\validateFacade::class,
         'adminAuth' => App\Facades\adminAuthFacade::class,
         'upload'    => App\Facades\uploadImageFacade::class,
+        'qiniu'     => App\Facades\qiniuFacade::class
     ],
 
 ];
