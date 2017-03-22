@@ -26,17 +26,10 @@ class AdminController extends Controller
 
     public function login(Request $request){
         $data = $request->only('username','password');
-        //$data['password'] = crypt($data['password'], env('APP_KEY'));
         $adminInstance = adminAuth::attempt($data);
-        //dd($adminInstance);
         if($adminInstance){
-            //dd($adminInstance);
             $request->session()->put('adminId',$adminInstance->id);
-            //if($request->session()->save()){
-                return redirect()->route('admin::list');
-            //}else{
-            //    abort(503);
-            //}
+            return redirect()->route('admin::list');
         }else{
             return redirect()->back()->with('error', 'login failed');
         }

@@ -16,10 +16,8 @@ class CommentAdminController extends Controller
     }
 
     public function search(){
-        //dd(Request::only('keyword'));
         $keyword = Request::only('keyword')['keyword'];
         $results = Comment::where('content', 'like', '%'.$keyword.'%')->orWhere('author', 'like', '%'.$keyword.'%')->paginate(10);
-        //dd($results);
         return redirect()->back()->withComments($results);
     }
 

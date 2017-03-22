@@ -27,13 +27,5 @@ class CategoryController extends Controller
             $others = $articles;
             return view('category')->with(['first' => $firstArticle, 'others' => $others, 'maxPage' => $maxPage]);
         }
-        /*$article = Category::find($categoryId)->article;
-        $maxPage = intval(ceil(Article::count()/$perPage));
-        $firstArticle = $article->shift();
-        $others = $article;
-        return view('home')->with(['first' => $firstArticle, 'others' => $others, 'maxPage' => $maxPage]);*/
-        /*$categories = Category::all();
-        $articles = Article::paginate(15);
-        return view('home')->withArticles($articles)->withCategories($categories);*/
     }
 }

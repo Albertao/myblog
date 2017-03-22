@@ -50,7 +50,7 @@ Route::group(['middleware' => 'web'], function () {
 
 //the admin routes
 
-Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'as'  => 'admin::', 'namespace' => 'Admin'], function(){
+Route::group(['middleware' => 'web', 'prefix' => 'admin', 'as'  => 'admin::', 'namespace' => 'Admin'], function(){
 
     //these routes in admin needs authorization
     Route::group(['middleware' => ['admin'] ], function(){

@@ -49,6 +49,9 @@
     <link rel="stylesheet" href="{{URL::asset('asset/css/material.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('asset/css/admin_style.css')}}">
     <script src="{{URL::asset('asset/ckeditor/ckeditor.js')}}"></script>
+    <script src="/asset/js/jq.js"></script>
+    @yield('extra_js')
+    @yield('extra_css')
     <link rel="stylesheet" href="{{URL::asset('asset/styles/atelier-forest-dark.css')}}">
     <style>
         #view-source {

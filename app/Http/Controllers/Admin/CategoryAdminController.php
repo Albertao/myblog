@@ -17,9 +17,7 @@ class CategoryAdminController extends Controller
 
     public function create(){
         $data = Request::only('name');
-        //$rules = ['name' => 'requried|max:255'];
-        //need validate
-        if(true){
+        if(count($data) >= 1){
             $model = new Category($data);
             $model->save();
             return Redirect::back()->withResult('create succeed');

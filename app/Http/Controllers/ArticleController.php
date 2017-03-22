@@ -33,14 +33,14 @@ class ArticleController extends Controller
     }
 
     public function detail($slag){
-        $article = Article::where('slag', $slag)->findOrFail();
-        if(!Article::find($article->id+1)){
+        $article = Article::where('slag', $slag)->get();
+        if(count($article) != 0 && !Article::find($article[0]->id+1)){
             $article->max = true;
         }else{
             $article->max = false;
         }
         $categories = Category::all();
-        return view('article.detail')->withArticle($article)->withCategories($categories)->withId($id);
+        return view('article.detail')->withArticle($article[0])->withCategories($categories)->withId($article[0]->id);
     }
 
 }

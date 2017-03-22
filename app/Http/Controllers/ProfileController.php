@@ -38,12 +38,6 @@ class ProfileController extends Controller
             }else{
                 abort(404);
             }
-
-            /*if(Input::hasFile('portrait')){
-                dd(Input::file('portrait'));
-            }else{
-                dd(Request::all());
-            }*/
         }else{
             abort(503);
         }

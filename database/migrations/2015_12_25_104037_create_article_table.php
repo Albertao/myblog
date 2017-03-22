@@ -20,6 +20,7 @@ class CreateArticleTable extends Migration
             $table->string('category');
             $table->string('image_url')->nullable();
             $table->text('content');
+            $table->text('markdown');
             $table->softDeletes();
             $table->timestamps();
         });

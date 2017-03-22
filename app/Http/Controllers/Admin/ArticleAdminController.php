@@ -30,11 +30,12 @@ class ArticleAdminController extends Controller
     public function post(){
         $data = Request::only('slag','title');
         $data['content'] = htmlentities($_POST['content']);
+        $data['markdown'] = htmlentities($_POST['content-md']);
         $data['author'] = adminAuth::admin()->name;
         if(Request::hasFile('article_image')){
             $data['image_url'] = upload::upload('asset/article_image/', 'article_image');
         }
-        $rules = ['slag' => 'required|max:255','author' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
+        $rules = ['slag' => 'required|max:255','author' => 'required|max:255','title' => 'required|max:255','content' => 'required', 'markdown' => 'required'];
         if(validate::make($data, $rules)){
             $article = new Article($data);
             $article->save();
@@ -56,11 +57,11 @@ class ArticleAdminController extends Controller
     public function update($id){
         $id = intval($id);
         $articleInstance = Article::findOrFail($id);
-        $data = Request::only('slag','content','title');
+        $data = Request::only('slag','content','title', 'markdown');
         if(Request::hasFile('article_image')){
             $data['image_url'] = upload::upload('asset/article_image/', 'article_image');
         }
-        $rules = ['slag' => 'required|max:255','title' => 'required|max:255','content' => 'required'];
+        $rules = ['slag' => 'required|max:255','title' => 'required|max:255','content' => 'required', 'markdown' => 'required'];
         if(validate::make($data, $rules)){
             $categories = Request::only('category');
             $articleInstance->update($data);

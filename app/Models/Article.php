@@ -11,7 +11,7 @@ class Article extends Model
     //
     protected $table = "Articles";
 
-    protected $fillable = ['slag','author','title','content','category','image_url'];
+    protected $fillable = ['slag','author','title','content', 'markdown', 'category','image_url'];
 
     public function comment(){
         return $this->hasMany('App\Models\Comment');

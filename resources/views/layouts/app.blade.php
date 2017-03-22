@@ -52,8 +52,7 @@
     <link rel="stylesheet" href="{{URL::asset('asset/css/material.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('asset/css/styles.css')}}">
     <link rel="stylesheet" href="{{URL::asset('asset/styles/atelier-forest-dark.css')}}">
-    <script src="{{URL::asset('asset/js/highlight.pack.js')}}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="/asset/css/editormd.min.css">
     <style>
         #view-source {
             position: fixed;

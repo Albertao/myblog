@@ -9,14 +9,7 @@ class adminAuth{
         if(is_array($data)){
             $adminInstance = Admin::where($data)->first();
             if(!empty($adminInstance)){
-                /*if(session('adminId',$adminInstance->id)){
-                    unset($adminInstance);
-                    return true;
-                }else{
-                    return false;
-                }*/
                 return $adminInstance;
-
             }else{
                 return false;
             }
